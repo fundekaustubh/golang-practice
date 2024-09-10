@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 type Person struct {
@@ -17,10 +18,24 @@ func (p Person) getLastName() string {
 	return p.lastName
 }
 
-func main() {
-	p := Person{
-		firstName: "Kaustubh",
-		lastName: "Funde",
+var people = []Person{}
+
+func getPeople() {
+	for _, person := range people {
+		fmt.Println(person.getFirstName(), person.getLastName())
 	}
-	fmt.Println("This person is", p.getFirstName(), p.getLastName())
+}
+
+
+func main() {
+
+	for i := 1; i <= 10; i++ {
+		people = append(people, Person{
+			firstName: "FirstName " + strconv.Itoa(i),
+			lastName: "LastName " + strconv.Itoa(i),
+		})
+	}
+
+	fmt.Println("All people: ")
+	getPeople()
 }
